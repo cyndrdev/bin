@@ -6,5 +6,4 @@
 cd $HOME/.scripts
 clear
 ./ufetch-core
-# sleep forever (or until CTRL-C)
-tail -f /dev/null
+sleep infinity
