@@ -1,10 +1,8 @@
 #!/bin/sh
-#
-# ufetch-void - tiny system info for void
+# original by jschx
+# depends on xbps (void linux)
 
-## INFO
-
-# user is already defined
+user=$([ -z "$USER" ] && whoami || echo $USER)
 host="$(hostname)"
 os='void linux'
 kernel="$(uname -sr | tr '[:upper:]' '[:lower:]')" 
@@ -16,9 +14,6 @@ if [ -z "${WM}" ]; then
 	WM="$(tail -n 1 "${HOME}/.xinitrc" | cut -d ' ' -f 2 | tr '[:upper:]' '[:lower:]')"
 fi
 
-## DEFINE COLORS
-
-# probably don't change these
 bold="$(tput bold)"
 black="$(tput setaf 0)"
 red="$(tput setaf 1)"
@@ -30,7 +25,6 @@ cyan="$(tput setaf 6)"
 white="$(tput setaf 7)"
 reset="$(tput sgr0)"
 
-# you can change these
 lc="${reset}${bold}${green}"	# labels
 nc="${reset}${bold}${green}"	# user and hostname
 ic="${reset}${bold}${white}"	# info
@@ -38,10 +32,8 @@ c0="${reset}${bold}${white}"	# first color
 c1="${reset}${red}"		# second color
 c2="${reset}${yellow}"		# second color
 
-## OUTPUT
-
 cat <<EOF
-${c0}${nc}${USER}${ic}@${nc}${host}${reset}
+${c0}${nc}${user}${ic}@${nc}${host}${reset}
 ${c1}            ${lc}os: ${ic}${os}${reset}
 ${c1}  /\\_/\\ ${c2}❤${c1}   ${lc}ke: ${ic}${kernel}${reset}
 ${c1}  >${c0}^,^${c1}<     ${lc}pk: ${ic}${packages}${reset}

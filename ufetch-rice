@@ -1,4 +1,10 @@
+#!/usr/bin/env bash
+# script by cyndrdev
+
+# wrapper around ufetch for prettier screenshots
+
 cd $HOME/.scripts
 clear
 ./ufetch-core
-sleep 1000000
+# sleep forever (or until CTRL-C)
+tail -f /dev/null

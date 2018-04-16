@@ -1,15 +1,21 @@
 #!/usr/bin/env bash
+# original by eti0
+# depends on curl, grep and sed
 
 www="http://www.dictionary.com/browse"
 word="$@"
 
 get () {
-	cmd=$(curl -s "$www/$word" | grep -oP '(?<=<meta name="description" content=").*(?=See more.)' | sed "s/.*definition,/$(tput setaf 2)$word$(tput setaf 1):/")
-	if [ -z "$cmd" ]; then
+	output=$(
+		curl -s "$www/$word" |
+		grep -oP '(?<=<meta name="description" content=").*(?=See more.)' |
+		sed "s/.*definition,/$(tput setaf 2)$word$(tput setaf 1):/")
+
+	if [ -z "$output" ]; then
 		echo "this word wasn't found."
 		exit 1
 	else
-		echo $cmd
+		echo $output
 	fi
 }
 
@@ -18,10 +24,4 @@ usage() {
 	exit 1
 }
 
-#if [ -z "$@" ]; then
-#	usage
-#else
-#	get
-#fi
-
-[ -z "$@" ] && usage || get
+[ -z "$1" ] && usage || get

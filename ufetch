@@ -1,4 +1,9 @@
-cd $HOME/.scripts
+#!/usr/bin/env bash
+# script by cyndrdev
+
+# small wrapper to give ufetch some space
+
+cd "$(dirname $0)"
 echo
 ./ufetch-core
 echo

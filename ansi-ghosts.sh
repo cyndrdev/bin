@@ -1,9 +1,5 @@
-#!/bin/bash
-#
-# ANSI color scheme script by pfh
-#
-# Initializing mod by lolilolicon from Archlinux
-#
+#!/usr/bin/env bash
+# original by pfh
 
 f=3 b=4
 for j in f b; do
