@@ -1,0 +1,51 @@
+#!/bin/sh
+#
+# ufetch-void - tiny system info for void
+
+## INFO
+
+# user is already defined
+host="$(hostname)"
+os='void linux'
+kernel="$(uname -sr | tr '[:upper:]' '[:lower:]')" 
+uptime="$(uptime -p | sed 's/up //' | tr '[:upper:]' '[:lower:]')"
+packages="$(xbps-query -l | wc -l | tr '[:upper:]' '[:lower:]')"
+shell="$(basename ${SHELL} | tr '[:upper:]' '[:lower:]')"
+font="$(xrdb -query | grep font | tail -n 1 | sed 's/.*\.font:\s*//' | sed 's/\s[0-9]//')"
+if [ -z "${WM}" ]; then
+	WM="$(tail -n 1 "${HOME}/.xinitrc" | cut -d ' ' -f 2 | tr '[:upper:]' '[:lower:]')"
+fi
+
+## DEFINE COLORS
+
+# probably don't change these
+bold="$(tput bold)"
+black="$(tput setaf 0)"
+red="$(tput setaf 1)"
+green="$(tput setaf 2)"
+yellow="$(tput setaf 3)"
+blue="$(tput setaf 4)"
+magenta="$(tput setaf 5)"
+cyan="$(tput setaf 6)"
+white="$(tput setaf 7)"
+reset="$(tput sgr0)"
+
+# you can change these
+lc="${reset}${bold}${green}"	# labels
+nc="${reset}${bold}${green}"	# user and hostname
+ic="${reset}${bold}${white}"	# info
+c0="${reset}${bold}${white}"	# first color
+c1="${reset}${red}"		# second color
+c2="${reset}${yellow}"		# second color
+
+## OUTPUT
+
+cat <<EOF
+${c0}${nc}${USER}${ic}@${nc}${host}${reset}
+${c1}            ${lc}os: ${ic}${os}${reset}
+${c1}  /\\_/\\ ${c2}❤${c1}   ${lc}ke: ${ic}${kernel}${reset}
+${c1}  >${c0}^,^${c1}<     ${lc}pk: ${ic}${packages}${reset}
+${c1}   / \\      ${lc}fn: ${ic}${font}${reset}
+${c1}  (___)_/   ${lc}sh: ${ic}${shell}${reset}
+${c1}            ${lc}wm: ${ic}${WM}${reset}
+EOF

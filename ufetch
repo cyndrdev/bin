@@ -1,0 +1,4 @@
+cd $HOME/.scripts
+echo
+./ufetch-core
+echo

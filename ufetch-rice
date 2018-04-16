@@ -1,0 +1,4 @@
+cd $HOME/.scripts
+clear
+./ufetch-core
+sleep 1000000
