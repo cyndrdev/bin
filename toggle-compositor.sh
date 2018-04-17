@@ -1,7 +1,6 @@
 #!/usr/bin/env bash 
 # script by cyndrdev
 # depends on pgrep
-# can use dunst
 
 compositor="compton"
 pid=$(pgrep $compositor)
