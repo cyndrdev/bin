@@ -4,6 +4,6 @@
 # small wrapper to give ufetch some space
 
 cd "$(dirname $0)"
-echo
+printf "\n"
 ./ufetch-core
-echo
+printf "\n\n"

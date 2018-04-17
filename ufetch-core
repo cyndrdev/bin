@@ -32,12 +32,10 @@ c0="${reset}${bold}${white}"	# first color
 c1="${reset}${red}"		# second color
 c2="${reset}${yellow}"		# second color
 
-cat <<EOF
-${c0}${nc}${user}${ic}@${nc}${host}${reset}
-${c1}            ${lc}os: ${ic}${os}${reset}
-${c1}  /\\_/\\ ${c2}❤${c1}   ${lc}ke: ${ic}${kernel}${reset}
-${c1}  >${c0}^,^${c1}<     ${lc}pk: ${ic}${packages}${reset}
-${c1}   / \\      ${lc}fn: ${ic}${font}${reset}
-${c1}  (___)_/   ${lc}sh: ${ic}${shell}${reset}
-${c1}            ${lc}wm: ${ic}${WM}${reset}
-EOF
+echo "${c0}${nc}${user}${ic}@${nc}${host}${reset}"
+echo "${c1}            ${lc}os: ${ic}${os}${reset}"
+echo "${c1}  /\\_/\\ ${c2}❤${c1}   ${lc}ke: ${ic}${kernel}${reset}"
+echo "${c1}  >${c0}^,^${c1}<     ${lc}pk: ${ic}${packages}${reset}"
+echo "${c1}   / \\      ${lc}fn: ${ic}${font}${reset}"
+echo "${c1}  (___)_/   ${lc}sh: ${ic}${shell}${reset}"
+echo -n "${c1}            ${lc}wm: ${ic}${WM}${reset}"

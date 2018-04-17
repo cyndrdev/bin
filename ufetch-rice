@@ -3,7 +3,25 @@
 
 # wrapper around ufetch for prettier screenshots
 
-cd $HOME/.scripts
-clear
-./ufetch-core
-sleep infinity
+x=$RANDOM
+y=$RANDOM
+
+let "x %= 1580"
+let "y %= 920"
+
+let "x += 20"
+let "y += 90"
+
+bspc rule -a URxvt:fetch state=floating rectangle="280x160+$x+$y"
+
+read -r -d '' cmd <<EOM
+cd $HOME/.scripts;
+clear;
+tput civis;
+./ufetch-core;
+while [ 1 ];
+do read -s;
+done;
+EOM
+
+urxvt -name fetch -e bash -c "$cmd"
