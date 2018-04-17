@@ -13,8 +13,9 @@ function get_screen_dims(){
 }
 
 function convert_bg(){
+	[ "$1" = "blur" ] && blur=2 || blur=0
 	convert $bg -resize "$(get_screen_dims)^" $bg_tmp
-	convert $bg_tmp -gravity center -crop $(get_screen_dims)+0+0 $bg_tmp
+	convert $bg_tmp -gravity center -crop $(get_screen_dims)+0+0 -blur $blur,$blur $bg_tmp
 }
 
 function reload_discord(){
@@ -23,7 +24,7 @@ function reload_discord(){
 }
 
 if [ -f "$bg" ]; then
-	convert_bg
+	convert_bg $1
 	data=$(base64 --wrap=0 $bg_tmp)
 
 	cd "$(dirname $0)"
