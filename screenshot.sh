@@ -2,6 +2,8 @@
 # script by cyndrdev
 # depends on scrot
 
+# takes a screnshot and saves it with an arbitrary filename
+
 dir="$HOME/screenshots"
 name="%s.png"
 
